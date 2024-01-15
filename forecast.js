@@ -1,17 +1,17 @@
-const key = '4y44qvuGPevNYNhLt71rxfudCGA80mhc';
+const key = 'F3s4OHdCAbmIvn3A0BKdPVrc84rKzlUx';
 
 // get weather information
 const getWeather = async (id) => {
 
-    const base = 'http://dataservice.accuweather.com/forecasts/v1/daily/1day/';
+    const base = 'http://dataservice.accuweather.com/currentconditions/v1/';
 
     const query = `${id}?apikey=${key}`;
 
     const response = await fetch(base + query);
 
-    const data = await(response.json());
+    const data = await response.json();
 
-    // console.log(data);
+    console.log(data);
 
     return data[0];
 }
@@ -29,7 +29,7 @@ const getCity = async (city) => {
 
     const data = await response.json();
 
-    // console.log(data);
+    // console.log(data[0]);
 
 
     return data[0];
@@ -43,11 +43,12 @@ const getCity = async (city) => {
 // .catch(err => console.log(err));
 
 
-// getCity('melrose').then(data => {
-//     return getWeather(data.Key);
-// }).then(data => {
-//     console.log(data);
-// }).catch(err => console.log(err));
+getCity('melrose').then(data => {
+    return getWeather(data.Key);
+}).then(data => {
+    console.log(data);
+}).catch(err => console.log(err));
 
 
 // getWeather("338630");
+
